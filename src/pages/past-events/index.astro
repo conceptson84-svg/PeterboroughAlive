@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Flame from '../../components/Flame.astro';
+import { pastEvents } from '../../data/pastEvents';
+---
+<Layout
+  path="/past-events"
+  title="Past Events | Peterborough Alive"
+  description="Relive Peterborough Alive since 2018 — galleries, artists and highlights from every year of our free gospel celebration in Peterborough."
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="wrap">
+      <a class="back" href="/">← Home</a>
+      <span class="eyebrow"><Flame /> Past events</span>
+      <h1 style="font-size:clamp(2.2rem,1.5rem+3vw,3.4rem); margin-top:.5rem">Years of full rooms</h1>
+      <p class="lede" style="margin-top:.8rem">Every gathering since 2018. There was no event in 2025 or 2026 — the next celebration is Peterborough Alive 2027.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap years-list">
+      {pastEvents.map((ev) => (
+        <a class="year-row" href={`/past-events/${ev.year}`}>
+          {ev.cover ? (
+            <Image class="thumb" src={ev.cover} alt={`${ev.title} highlight`} widths={[280, 560]} sizes="280px" loading="lazy" />
+          ) : (
+            <div class="thumb-empty">Photos coming soon</div>
+          )}
+          <div class="body">
+            <div class="yr">{ev.year}</div>
+            <h3>{ev.title}</h3>
+            <p>{ev.blurb}</p>
+            <span class="more">{ev.gallery.length > 0 ? `View gallery (${ev.gallery.length} photos) →` : 'More soon →'}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>

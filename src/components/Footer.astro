@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { org, contact } from '../data/site';
+const year = new Date().getFullYear();
+const socials = Object.entries(contact.social).filter(([, v]) => v);
+---
+<footer class="pa-foot" id="contact">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <Image class="logo" src={logo} alt="Peterborough Alive logo" height={76} width={69} />
+        <p class="tag">{org.tagline}</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <a href="/#lineup">The lineup</a>
+        <a href="/past-events">Past events</a>
+        <a href="/#watch">Watch again</a>
+        <a href="/#sponsors">Sponsor us</a>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        <a href="#" set:html={contact.addressLines.join('<br>')}></a>
+        {socials.length > 0 ? (
+          socials.map(([k, v]) => <a href={v as string}>{k[0].toUpperCase() + k.slice(1)}</a>)
+        ) : (
+          <span style="color:rgba(255,255,255,.6)">Instagram · Facebook · YouTube</span>
+        )}
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© {year} {org.name} · Organised by {org.organiser}{org.charityNumber ? ` · Registered charity ${org.charityNumber}` : ''}</span>
+    </div>
+  </div>
+</footer>

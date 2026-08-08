@@ -1,0 +1,108 @@
+---
+import '../styles/global.css';
+import { org, contact, nextEvent } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+}
+
+const {
+  title = 'Peterborough Alive | Free Gospel Music Events for the Community',
+  description = 'Peterborough Alive is a free gospel music celebration uniting the communities of Peterborough, Cambridgeshire. After a pause, we return in 2027 — save the date.',
+  path = '/',
+} = Astro.props;
+
+const canonical = new URL(path, Astro.site ?? 'https://www.peterboroughaliveconcert.org').href;
+
+// Organisation schema (always valid).
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: org.name,
+  foundingDate: String(org.established),
+  slogan: org.tagline,
+  email: contact.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Wellington Street',
+    addressLocality: 'Peterborough',
+    addressRegion: 'Cambridgeshire',
+    postalCode: 'PE1 5DU',
+    addressCountry: 'GB',
+  },
+  url: canonical,
+};
+
+// Event schema — only emitted once a real date exists (Event requires startDate
+// to be valid for Google's event listings).
+const eventSchema = nextEvent.isoDate
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'MusicEvent',
+      name: nextEvent.title,
+      startDate: nextEvent.isoDate,
+      eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+      eventStatus: 'https://schema.org/EventScheduled',
+      location: {
+        '@type': 'Place',
+        name: nextEvent.venue || 'Peterborough',
+        address: { '@type': 'PostalAddress', addressLocality: 'Peterborough', addressCountry: 'GB' },
+      },
+      image: new URL('/logo.png', Astro.site).href,
+      description,
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'GBP',
+        availability: 'https://schema.org/InStock',
+        url: canonical,
+      },
+      organizer: { '@type': 'Organization', name: org.organiser, email: contact.email },
+    }
+  : null;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/logo.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <meta name="theme-color" content="#2A0E24" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={org.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/logo.png', Astro.site).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Prevent theme flash: apply saved theme before paint. -->
+    <script is:inline>
+      (() => {
+        try {
+          const t = localStorage.getItem('pa-theme');
+          if (t) document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    {eventSchema && <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />}
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <slot name="header" />
+    <main id="main">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>

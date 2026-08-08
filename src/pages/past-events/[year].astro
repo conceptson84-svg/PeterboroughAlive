@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Flame from '../../components/Flame.astro';
+import { pastEvents } from '../../data/pastEvents';
+
+export function getStaticPaths() {
+  return pastEvents.map((ev) => ({ params: { year: String(ev.year) }, props: { ev } }));
+}
+
+const { ev } = Astro.props;
+const others = pastEvents.filter((e) => e.year !== ev.year);
+---
+<Layout
+  path={`/past-events/${ev.year}`}
+  title={`${ev.title} | Peterborough Alive`}
+  description={ev.blurb}
+>
+  <Header slot="header" />
+
+  <section class="page-hero">
+    <div class="wrap">
+      <a class="back" href="/past-events">← All past events</a>
+      <span class="eyebrow"><Flame /> {ev.year}</span>
+      <h1 style="font-size:clamp(2.2rem,1.5rem+3vw,3.4rem); margin-top:.5rem">{ev.title}</h1>
+      <p class="lede" style="margin-top:.8rem">{ev.blurb}</p>
+      <div class="years" style="margin-top:1.6rem">
+        {pastEvents.map((e) => (
+          <a class={`chip${e.year === ev.year ? ' on' : ''}`} href={`/past-events/${e.year}`}>{e.year}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      {ev.gallery.length > 0 ? (
+        <div class="mosaic">
+          {ev.gallery.map((photo, i) => (
+            <figure class={`m${i % 6}`}>
+              <Image src={photo.src} alt={photo.alt} widths={[400, 800, 1200]} sizes="(max-width:820px) 50vw, 33vw" loading="lazy" />
+              {photo.caption && <figcaption class="cap">{photo.caption}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      ) : (
+        <div style="text-align:center; padding:3rem 1rem; color:var(--muted)">
+          <p style="font-family:var(--serif); font-size:1.4rem; color:var(--ink)">Photos from {ev.year} are on their way.</p>
+          <p style="margin-top:.6rem">If you have pictures from this night, we'd love to see them — <a href="/#contact" style="color:var(--gold); font-weight:600">get in touch</a>.</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
