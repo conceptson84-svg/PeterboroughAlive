@@ -8,8 +8,8 @@ import { org, nextEvent } from '../data/site';
 import { artists, lineupConfirmed } from '../data/artists';
 import { partners } from '../data/partners';
 import { pastEvents } from '../data/pastEvents';
-import heroImg from '../assets/photos/ensemble-finale.jpg';
-import watchImg from '../assets/photos/crowd.jpg';
+import heroImg from '../assets/photos/hero.jpg';
+import watchImg from '../assets/photos/2022/p12.jpg';
 
 const latest = pastEvents.find((e) => e.gallery.length > 0);
 const preview = latest ? latest.gallery.slice(0, 6) : [];
@@ -121,9 +121,9 @@ const preview = latest ? latest.gallery.slice(0, 6) : [];
         <button class="play" type="button" aria-label="Play the 2023 concert video">
           <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
         </button>
-        <div class="lbl">Peterborough Alive 2023 — Full concert</div>
+        <div class="lbl">Peterborough Alive — concert highlights</div>
       </div>
-      <p style="margin-top:1rem; color:rgba(255,255,255,.7); font-size:.92rem">Video embed goes here once a YouTube or Facebook link is available.</p>
+      <p style="margin-top:1rem; color:rgba(255,255,255,.7); font-size:.92rem">Drop in a YouTube or Facebook video link and this becomes the embedded player.</p>
     </div>
   </section>
 
