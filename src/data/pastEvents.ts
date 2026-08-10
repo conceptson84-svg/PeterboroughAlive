@@ -138,14 +138,16 @@ export const pastEvents: PastEvent[] = [
   {
     year: 2021,
     title: 'Peterborough Alive 2021',
-    blurb: 'A year of comeback, with sets from Faith Child and Philippa Hanna. Video highlights available.',
+    blurb:
+      'After the pandemic paused 2020, Peterborough Alive returned with faith and hope renewed — a night of unity, togetherness and the love of God. Video highlights available.',
     cover: null,
     gallery: [],
   },
   {
     year: 2019,
     title: 'Peterborough Alive 2019',
-    blurb: 'Our second year, welcoming more artists and more of the city than ever. Video highlights available.',
+    blurb:
+      'Our second edition, at The Cresset — a wonderful night in God’s presence with Faith Child, Philippa Hanna, Pastor Nathaniel Bassey from Nigeria and the Peterborough Alive Mass Choir. Video highlights available.',
     cover: null,
     gallery: [],
   },
@@ -153,7 +155,7 @@ export const pastEvents: PastEvent[] = [
     year: 2018,
     title: 'Peterborough Alive 2018 — the first night',
     blurb:
-      'Where it began: a free gift of gospel music to the city of Peterborough, with a full room and voices raised late into the night.',
+      'Our very first edition, at the Broadway Theatre — one stage shared by Noel Robinson, Philippa Hanna, Poland’s Sienna Gospel Choir, David Brackenridge from Scotland, Stephanie Staples from the US and the Peterborough Alive Mass Choir. Staged with local charities SHINE, TimeStop and Smiles International, and even featured by the BBC.',
     cover: imgs2018[10] ?? imgs2018[0] ?? null,
     gallery: zip(imgs2018, caps2018),
   },
