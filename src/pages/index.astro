@@ -9,17 +9,33 @@ import { artists, lineupConfirmed } from '../data/artists';
 import { partners } from '../data/partners';
 import { pastEvents } from '../data/pastEvents';
 import heroImg from '../assets/photos/hero.jpg';
+import slide2 from '../assets/photos/2025/p01.jpg';
+import slide3 from '../assets/photos/2023/p05.jpg';
+import slide4 from '../assets/photos/2022/p01.jpg';
 import watchImg from '../assets/photos/2022/p12.jpg';
 
 const latest = pastEvents.find((e) => e.gallery.length > 0);
 const preview = latest ? latest.gallery.slice(0, 6) : [];
+const heroSlides = [heroImg, slide2, slide3, slide4];
 ---
 <Layout path="/">
   <Header slot="header" />
 
   <!-- HERO -->
   <section class="hero">
-    <Image class="bgimg" src={heroImg} alt="Performers and choir on stage at a Peterborough Alive gospel concert, lit in gold and blue" widths={[768, 1280, 1800]} sizes="100vw" loading="eager" fetchpriority="high" />
+    <div class="hero-slides" aria-hidden="true">
+      {heroSlides.map((src, i) => (
+        <Image
+          class={i === 0 ? 'slide is-active' : 'slide'}
+          src={src}
+          alt=""
+          widths={[768, 1280, 1920]}
+          sizes="100vw"
+          loading={i === 0 ? 'eager' : 'lazy'}
+          fetchpriority={i === 0 ? 'high' : undefined}
+        />
+      ))}
+    </div>
     <div class="wrap">
       <span class="eyebrow"><Flame /> Peterborough's free gospel celebration · Est. {org.established}</span>
       <h1>{org.tagline}</h1>
@@ -162,6 +178,20 @@ const preview = latest ? latest.gallery.slice(0, 6) : [];
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (function () {
+      var slides = document.querySelectorAll('.hero-slides .slide');
+      if (slides.length < 2) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var i = 0;
+      setInterval(function () {
+        slides[i].classList.remove('is-active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('is-active');
+      }, 5000);
+    })();
+  </script>
 
   <Footer slot="footer" />
 </Layout>
