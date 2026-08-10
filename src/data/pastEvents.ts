@@ -11,6 +11,7 @@ const load = (glob: Record<string, unknown>): ImageMetadata[] =>
 const imgs2018 = load(import.meta.glob('../assets/photos/2018/*.jpg', { eager: true, import: 'default' }));
 const imgs2022 = load(import.meta.glob('../assets/photos/2022/*.jpg', { eager: true, import: 'default' }));
 const imgs2023 = load(import.meta.glob('../assets/photos/2023/*.jpg', { eager: true, import: 'default' }));
+const imgs2025 = load(import.meta.glob('../assets/photos/2025/*.jpg', { eager: true, import: 'default' }));
 
 type Cap = { alt: string; caption?: string };
 
@@ -71,6 +72,9 @@ const caps2023: Cap[] = [
   { alt: 'The audience standing together in worship', caption: 'Together as one' },
 ];
 
+// 2025 captions — filled in when the photographer's gallery is added.
+const caps2025: Cap[] = [];
+
 const zip = (imgs: ImageMetadata[], caps: Cap[]) =>
   imgs.map((src, i) => ({ src, alt: caps[i]?.alt ?? '', caption: caps[i]?.caption }));
 
@@ -87,6 +91,13 @@ export type PastEvent = {
 // Newest first. Peterborough Alive ran 2018, 2019, 2021, 2022, 2023
 // (no event in 2020, and none in 2024–2026 — next is 2027).
 export const pastEvents: PastEvent[] = [
+  {
+    year: 2025,
+    title: 'Peterborough Alive 2025',
+    blurb: 'Our most recent night of gospel music and worship. Photos from the 2025 concert are being added.',
+    cover: imgs2025[0] ?? null,
+    gallery: zip(imgs2025, caps2025),
+  },
   {
     year: 2023,
     title: 'Peterborough Alive 2023',

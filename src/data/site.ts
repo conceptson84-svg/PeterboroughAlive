@@ -32,8 +32,8 @@ export const nextEvent = {
   venue: '', // e.g. 'The Cresset, Peterborough'
   city: 'Peterborough, Cambridgeshire',
   free: true,
-  // Shown under the hero headline. Acknowledges the pause, points to 2027.
-  note: 'There was no event in 2025 or 2026 — but we’re back. Save the date for Peterborough Alive 2027, our biggest night of gospel music yet.',
+  // Shown under the hero headline. 2025 was the most recent night; no 2026; next is 2027.
+  note: 'Our most recent celebration was in 2025. There’s no event in 2026 — but we’ll be back. Save the date for Peterborough Alive 2027, our biggest night of gospel music yet.',
 };
 
 // Links used in navigation and the footer.
