@@ -15,8 +15,8 @@ export const contact = {
   email: 'info@peterboroughaliveconcert.org',
   addressLines: ['Wellington Street, Peterborough', 'Cambridgeshire, PE1 5DU'],
   social: {
-    instagram: '',
-    facebook: '',
+    instagram: 'https://www.instagram.com/peterboroughaliveconcert',
+    facebook: 'https://www.facebook.com/peterborough.alive.3',
     youtube: '',
   },
 };
