@@ -129,7 +129,7 @@ export const pastEvents: PastEvent[] = [
   },
   {
     year: 2022,
-    title: 'Peterborough Alive 2022 — Spirit Breakout',
+    title: 'Peterborough Alive 2022 — out in the city',
     blurb:
       'We took the celebration outdoors into Cathedral Square: a free, open-air day of gospel music, worship and community right in the heart of Peterborough.',
     cover: imgs2022[0] ?? null,
@@ -137,9 +137,9 @@ export const pastEvents: PastEvent[] = [
   },
   {
     year: 2021,
-    title: 'Peterborough Alive 2021',
+    title: 'Peterborough Alive 2021 — Spirit Break Out',
     blurb:
-      'After the pandemic paused 2020, Peterborough Alive returned with faith and hope renewed — a night of unity, togetherness and the love of God. Video highlights available.',
+      'Themed “Spirit Break Out.” After the pandemic paused 2020, Peterborough Alive returned with faith and hope renewed — a night of unity, togetherness and the love of God. Video highlights available.',
     cover: null,
     gallery: [],
   },
