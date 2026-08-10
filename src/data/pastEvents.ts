@@ -10,6 +10,7 @@ const load = (glob: Record<string, unknown>): ImageMetadata[] =>
 
 const imgs2018 = load(import.meta.glob('../assets/photos/2018/*.jpg', { eager: true, import: 'default' }));
 const imgs2022 = load(import.meta.glob('../assets/photos/2022/*.jpg', { eager: true, import: 'default' }));
+const imgs2023 = load(import.meta.glob('../assets/photos/2023/*.jpg', { eager: true, import: 'default' }));
 
 type Cap = { alt: string; caption?: string };
 
@@ -47,6 +48,29 @@ const caps2022: Cap[] = [
   { alt: 'Wide view of the crowd beneath the Guildhall', caption: 'Under the Guildhall' },
 ];
 
+const caps2023: Cap[] = [
+  { alt: 'Spotlight beams sweep across the concert stage', caption: 'Under the lights' },
+  { alt: 'Vocalist in magenta singing close to the microphone', caption: 'A voice that carries' },
+  { alt: 'Guitarist performing in a spotlight', caption: 'The band' },
+  { alt: 'Colourfully dressed ensemble singing together', caption: 'Voices of the city' },
+  { alt: 'Wide view of the full stage and a packed audience', caption: 'A full house' },
+  { alt: 'Singer with a raised hand, lit in colour', caption: 'Caught up in the moment' },
+  { alt: 'Women singing with hands lifted high', caption: 'Hands lifted high' },
+  { alt: 'Musician playing the keyboard', caption: 'On the keys' },
+  { alt: 'The full band performing beneath the lyric screen', caption: 'I call you Jehovah' },
+  { alt: 'Two vocalists singing a duet in blue light', caption: 'In harmony' },
+  { alt: 'Singer in sequins performing centre stage', caption: 'Centre stage' },
+  { alt: 'Saxophonist leaning back mid-solo', caption: 'The saxophone solo' },
+  { alt: 'The choir performing under purple light', caption: 'The choir' },
+  { alt: 'Performer leaning out towards the crowd', caption: 'Giving it everything' },
+  { alt: 'A packed, seated audience fills the room', caption: 'The room fills up' },
+  { alt: 'Vocalist in a suit singing with feeling', caption: 'Heart and soul' },
+  { alt: 'Guitarist playing towards the audience amid stage beams', caption: 'Playing to the room' },
+  { alt: 'The crowd dancing at the front of the stage', caption: 'On their feet' },
+  { alt: 'Performer bringing a spoken word to the crowd', caption: 'Bringing the word' },
+  { alt: 'The audience standing together in worship', caption: 'Together as one' },
+];
+
 const zip = (imgs: ImageMetadata[], caps: Cap[]) =>
   imgs.map((src, i) => ({ src, alt: caps[i]?.alt ?? '', caption: caps[i]?.caption }));
 
@@ -66,9 +90,10 @@ export const pastEvents: PastEvent[] = [
   {
     year: 2023,
     title: 'Peterborough Alive 2023',
-    blurb: 'Our most recent celebration. Video highlights are being edited — photos coming soon.',
-    cover: null,
-    gallery: [],
+    blurb:
+      'Back indoors for our biggest concert yet — a packed room, a live band and choir, and a whole city lifting its voice late into the night.',
+    cover: imgs2023[4] ?? imgs2023[0] ?? null,
+    gallery: zip(imgs2023, caps2023),
   },
   {
     year: 2022,
