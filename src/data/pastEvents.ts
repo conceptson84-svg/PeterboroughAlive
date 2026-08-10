@@ -72,8 +72,28 @@ const caps2023: Cap[] = [
   { alt: 'The audience standing together in worship', caption: 'Together as one' },
 ];
 
-// 2025 captions — filled in when the photographer's gallery is added.
-const caps2025: Cap[] = [];
+const caps2025: Cap[] = [
+  { alt: 'Wide view of the 2025 concert stage and audience beneath the screen', caption: 'The 2025 concert begins' },
+  { alt: 'Lead vocalist in a navy suit singing with backing singers', caption: 'Leading the room' },
+  { alt: 'Three women singing together under green light', caption: 'In three-part harmony' },
+  { alt: 'Singer in a checked waistcoat performing with energy', caption: 'Giving it everything' },
+  { alt: 'The stage and a gathered audience ready to worship', caption: 'A room ready to worship' },
+  { alt: 'Vocalist in a black jacket leading with the choir behind', caption: 'Take the lead' },
+  { alt: 'Keyboard player performing with singers', caption: 'On the keys' },
+  { alt: 'Singer and choir in call and response under green light', caption: 'Call and response' },
+  { alt: 'Members of the audience clapping along', caption: 'Every generation' },
+  { alt: 'A singer leads as the choir joins in', caption: 'A song rises' },
+  { alt: 'Vocalist leaning into a passionate moment with the band', caption: 'Poured out in praise' },
+  { alt: 'Three vocalists singing, eyes closed', caption: 'Voices lifted' },
+  { alt: 'Two vocalists sharing a duet in blue light', caption: 'A duet' },
+  { alt: 'Singer performing alongside the bass player', caption: 'With the band' },
+  { alt: 'Performer caught up in the music under green light', caption: 'Caught up in it' },
+  { alt: 'Vocalist and keyboardist mid-song', caption: 'Between the notes' },
+  { alt: 'The full choir and stage with the audience watching', caption: 'The whole stage sings' },
+  { alt: 'Group photo of the organising team', caption: 'The team behind the night' },
+  { alt: 'A guest being welcomed with a gift in the foyer', caption: 'Everyone’s welcome' },
+  { alt: 'A young child among the crowd', caption: 'The next generation' },
+];
 
 const zip = (imgs: ImageMetadata[], caps: Cap[]) =>
   imgs.map((src, i) => ({ src, alt: caps[i]?.alt ?? '', caption: caps[i]?.caption }));
@@ -93,22 +113,23 @@ export type PastEvent = {
 export const pastEvents: PastEvent[] = [
   {
     year: 2025,
-    title: 'Peterborough Alive 2025',
-    blurb: 'Our most recent night of gospel music and worship. Photos from the 2025 concert are being added.',
+    title: 'Peterborough Alive 2025 — Halleluyah',
+    blurb:
+      'Our most recent night: an indoor music concert with a live band, a full choir and a city lifting its voice in praise.',
     cover: imgs2025[0] ?? null,
     gallery: zip(imgs2025, caps2025),
   },
   {
     year: 2023,
-    title: 'Peterborough Alive 2023',
+    title: 'Peterborough Alive 2023 — Kavod',
     blurb:
-      'Back indoors for our biggest concert yet — a packed room, a live band and choir, and a whole city lifting its voice late into the night.',
+      'Themed “Kavod” — glory. Back indoors for our biggest concert yet: a packed room, a live band and choir, and a whole city lifting its voice late into the night.',
     cover: imgs2023[4] ?? imgs2023[0] ?? null,
     gallery: zip(imgs2023, caps2023),
   },
   {
     year: 2022,
-    title: 'Peterborough Alive 2022 — out in the city',
+    title: 'Peterborough Alive 2022 — Spirit Breakout',
     blurb:
       'We took the celebration outdoors into Cathedral Square: a free, open-air day of gospel music, worship and community right in the heart of Peterborough.',
     cover: imgs2022[0] ?? null,
