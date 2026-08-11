@@ -104,5 +104,20 @@ const eventSchema = nextEvent.isoDate
       <slot />
     </main>
     <slot name="footer" />
+
+    <button id="to-top" class="to-top" type="button" aria-label="Back to top" hidden>
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 5l-7 7h4v7h6v-7h4z" fill="currentColor"/></svg>
+    </button>
+    <script is:inline>
+      (() => {
+        const btn = document.getElementById('to-top');
+        if (!btn) return;
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const onScroll = () => { btn.hidden = window.scrollY < 600; };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
+      })();
+    </script>
   </body>
 </html>

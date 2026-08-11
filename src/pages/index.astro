@@ -5,9 +5,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Flame from '../components/Flame.astro';
 import Video from '../components/Video.astro';
+import Contact from '../components/Contact.astro';
 import { org, nextEvent, watchVideos } from '../data/site';
-import { artists, lineupConfirmed } from '../data/artists';
-import { partners } from '../data/partners';
+import { artists } from '../data/artists';
 import { pastEvents } from '../data/pastEvents';
 import heroImg from '../assets/photos/hero.jpg';
 import slide2 from '../assets/photos/2025/p01.jpg';
@@ -95,9 +95,9 @@ const heroSlides = [heroImg, slide2, slide3, slide4];
   <section id="lineup" class="tag-alt">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow"><Flame /> The lineup</span>
-        <h2>Who's taking the stage</h2>
-        <p class="lede">{lineupConfirmed ? 'Your 2027 lineup:' : "The 2027 bill is being confirmed. Here's the calibre of artist Peterborough Alive is known for."}</p>
+        <span class="eyebrow"><Flame /> The artists</span>
+        <h2>Artists who've graced our stage</h2>
+        <p class="lede">A taste of the artists Peterborough Alive has been honoured to host over the years. The 2027 lineup will be announced here — follow us for updates.</p>
       </div>
       <div class="lineup-grid">
         {artists.map((a) => (
@@ -109,9 +109,13 @@ const heroSlides = [heroImg, slide2, slide3, slide4];
           </article>
         ))}
       </div>
-      {!lineupConfirmed && (
-        <span class="soon"><Flame /> Full 2027 lineup announced soon — check back or follow us for updates.</span>
-      )}
+      <div class="sing-cta">
+        <div>
+          <h3>Sing with us in 2027</h3>
+          <p>The Peterborough Alive Mass Choir is open to voices from across the city — no audition, just a heart to sing. Add yours for 2027.</p>
+        </div>
+        <a class="btn btn-primary" href="#contact" data-enquiry="Sing with the Mass Choir">Sing with the choir</a>
+      </div>
     </div>
   </section>
 
@@ -162,20 +166,17 @@ const heroSlides = [heroImg, slide2, slide3, slide4];
           <span class="eyebrow"><Flame /> Partners &amp; sponsors</span>
           <h2>Made possible together</h2>
         </div>
-        <p style="color:var(--muted); max-width:52ch; margin-bottom:1.4rem">Peterborough Alive is powered by local churches, charities and businesses who believe in a city that comes together. We're proud to partner with organisations serving Peterborough all year round.</p>
-        <div class="logos">
-          {partners.map((p) => (
-            <div class="logobox">{p.name}{p.note && <><br />{p.note}</>}</div>
-          ))}
-        </div>
+        <p style="color:var(--muted); max-width:52ch">Peterborough Alive is powered by local churches, charities and businesses who believe in a city that comes together. Organised by {org.organiser}, we partner with organisations serving Peterborough all year round.</p>
       </div>
       <div class="sponsor-cta">
         <h3>Become a sponsor</h3>
         <p>Put your organisation in front of thousands of Peterborough families and help keep this night free for everyone. Sponsorship packages available for 2027.</p>
-        <a class="btn btn-primary" href="#contact">Request the sponsor pack</a>
+        <a class="btn btn-primary" href="#contact" data-enquiry="Sponsorship">Request the sponsor pack</a>
       </div>
     </div>
   </section>
+
+  <Contact />
 
   <script is:inline>
     (function () {

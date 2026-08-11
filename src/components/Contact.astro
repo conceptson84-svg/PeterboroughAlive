@@ -1,0 +1,108 @@
+---
+import Flame from './Flame.astro';
+import { contact } from '../data/site';
+
+const enquiries = [
+  'General enquiry',
+  'Sing with the Mass Choir (2027)',
+  'Sponsorship / partnership',
+  'Perform / take part',
+  'Volunteer on the day',
+  'Media / press',
+];
+---
+<section id="contact" class="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-intro">
+      <span class="eyebrow"><Flame /> Get in touch</span>
+      <h2>Let’s make 2027 together</h2>
+      <p class="lede">Want to sing with the Mass Choir, sponsor the night, take part, or just say hello? Send a message and we’ll get back to you.</p>
+      <ul class="contact-points">
+        <li>Sing with the Peterborough Alive Mass Choir</li>
+        <li>Sponsor or partner with us</li>
+        <li>Perform or take part on the night</li>
+        <li>Volunteer on the day</li>
+      </ul>
+      <p class="contact-alt">Prefer email? <a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+    </div>
+
+    <form class="contact-form" data-endpoint={contact.formEndpoint} data-email={contact.email}>
+      <p class="cf-row">
+        <label for="cf-name">Your name</label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" required />
+      </p>
+      <p class="cf-row">
+        <label for="cf-email">Email address</label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+      </p>
+      <p class="cf-row">
+        <label for="cf-enquiry">I’m getting in touch about</label>
+        <select id="cf-enquiry" name="enquiry">
+          {enquiries.map((e) => <option value={e}>{e}</option>)}
+        </select>
+      </p>
+      <p class="cf-row">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" rows="4" required></textarea>
+      </p>
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="cf-hp" />
+      <button class="btn btn-primary" type="submit">Send message</button>
+      <p class="cf-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  // Preselect the enquiry dropdown when arriving from a "Sing with us" /
+  // "Sponsor" link (any element with data-enquiry="...").
+  document.addEventListener('click', (e) => {
+    const t = (e.target as HTMLElement).closest('[data-enquiry]');
+    if (!t) return;
+    const val = t.getAttribute('data-enquiry');
+    const sel = document.getElementById('cf-enquiry') as HTMLSelectElement | null;
+    if (sel && val) {
+      const opt = Array.from(sel.options).find((o) => o.value.toLowerCase().includes(val.toLowerCase()));
+      if (opt) sel.value = opt.value;
+    }
+  });
+
+  const form = document.querySelector('.contact-form') as HTMLFormElement | null;
+  if (form) {
+    const status = form.querySelector('.cf-status') as HTMLElement;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if ((form.querySelector('.cf-hp') as HTMLInputElement).value) return; // spam bot
+      const data = new FormData(form);
+      const endpoint = form.dataset.endpoint;
+      const email = form.dataset.email || '';
+
+      if (!endpoint) {
+        // No form backend yet — open the visitor's email app, pre-filled.
+        const subject = encodeURIComponent('[Website] ' + (data.get('enquiry') || 'Enquiry'));
+        const body = encodeURIComponent(
+          `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nAbout: ${data.get('enquiry')}\n\n${data.get('message')}`
+        );
+        window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+        status.textContent = 'Opening your email app…';
+        return;
+      }
+
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      btn.disabled = true;
+      status.textContent = 'Sending…';
+      try {
+        const res = await fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+        if (res.ok) {
+          form.reset();
+          status.textContent = 'Thank you — we’ve got your message and will be in touch.';
+        } else {
+          status.textContent = 'Something went wrong. Please email us directly at ' + email + '.';
+        }
+      } catch {
+        status.textContent = 'Something went wrong. Please email us directly at ' + email + '.';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+</script>

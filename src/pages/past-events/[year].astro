@@ -14,6 +14,9 @@ export function getStaticPaths() {
 
 const { ev } = Astro.props;
 const video = watchVideos.find((v) => v.year === ev.year);
+const idx = pastEvents.findIndex((e) => e.year === ev.year);
+const newer = pastEvents[idx - 1];
+const older = pastEvents[idx + 1];
 ---
 <Layout
   path={`/past-events/${ev.year}`}
@@ -64,6 +67,11 @@ const video = watchVideos.find((v) => v.year === ev.year);
         </div>
       )}
     </div>
+    <nav class="year-nav" aria-label="More past events">
+      {older ? <a class="yn prev" href={`/past-events/${older.year}`}>← {older.year}</a> : <span class="yn-empty"></span>}
+      <a class="yn all" href="/past-events">All past events</a>
+      {newer ? <a class="yn next" href={`/past-events/${newer.year}`}>{newer.year} →</a> : <span class="yn-empty"></span>}
+    </nav>
   </section>
 
   <Footer slot="footer" />

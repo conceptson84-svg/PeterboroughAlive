@@ -5,6 +5,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Flame from '../../components/Flame.astro';
 import { pastEvents } from '../../data/pastEvents';
+import { watchVideos } from '../../data/site';
 ---
 <Layout
   path="/past-events"
@@ -24,21 +25,26 @@ import { pastEvents } from '../../data/pastEvents';
 
   <section>
     <div class="wrap years-list">
-      {pastEvents.map((ev) => (
-        <a class="year-row" href={`/past-events/${ev.year}`}>
-          {ev.cover ? (
-            <Image class="thumb" src={ev.cover} alt={`${ev.title} highlight`} widths={[280, 560]} sizes="280px" loading="lazy" />
-          ) : (
-            <div class="thumb-empty">Photos coming soon</div>
-          )}
-          <div class="body">
-            <div class="yr">{ev.year}</div>
-            <h3>{ev.title}</h3>
-            <p>{ev.blurb}</p>
-            <span class="more">{ev.gallery.length > 0 ? `View gallery (${ev.gallery.length} photos) →` : 'More soon →'}</span>
-          </div>
-        </a>
-      ))}
+      {pastEvents.map((ev) => {
+        const video = watchVideos.find((v) => v.year === ev.year);
+        return (
+          <a class="year-row" href={`/past-events/${ev.year}`}>
+            {ev.cover ? (
+              <Image class="thumb" src={ev.cover} alt={`${ev.title} highlight`} widths={[280, 560]} sizes="280px" loading="lazy" />
+            ) : video ? (
+              <div class="thumb-video"><img class="thumb" src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`} alt={`${ev.title} video`} loading="lazy" width="280" height="210" /><span class="tv-badge">▸ Watch</span></div>
+            ) : (
+              <div class="thumb-empty">Photos coming soon</div>
+            )}
+            <div class="body">
+              <div class="yr">{ev.year}</div>
+              <h3>{ev.title}</h3>
+              <p>{ev.blurb}</p>
+              <span class="more">{ev.gallery.length > 0 ? `View gallery (${ev.gallery.length} photos) →` : video ? 'Watch the session →' : 'More soon →'}</span>
+            </div>
+          </a>
+        );
+      })}
     </div>
   </section>
 

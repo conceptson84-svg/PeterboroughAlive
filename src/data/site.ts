@@ -14,6 +14,12 @@ export const org = {
 export const contact = {
   email: 'info@peterboroughaliveconcert.org',
   addressLines: ['Wellington Street, Peterborough', 'Cambridgeshire, PE1 5DU'],
+  // Map link for the address (footer). Update if the pin is off.
+  mapUrl: 'https://www.google.com/maps/search/?api=1&query=Wellington+Street+Peterborough+PE1+5DU',
+  // Paste a Formspree endpoint (https://formspree.io/f/XXXX) to receive form
+  // submissions in your inbox. Left empty, the form opens the visitor's email
+  // app pre-filled instead — so it still works today.
+  formEndpoint: '',
   social: {
     instagram: 'https://www.instagram.com/peterboroughaliveconcert',
     facebook: 'https://www.facebook.com/peterborough.alive.3',
@@ -48,9 +54,9 @@ export const watchVideos: { id: string; title: string; year: number }[] = [
 // Links used in navigation and the footer.
 export const nav = [
   { label: 'About', href: '/#about' },
-  { label: 'Lineup', href: '/#lineup' },
+  { label: 'Artists', href: '/#lineup' },
   { label: 'Past Events', href: '/past-events' },
-  { label: 'Sponsors', href: '/#sponsors' },
   { label: 'Watch', href: '/#watch' },
+  { label: 'Sponsors', href: '/#sponsors' },
   { label: 'Contact', href: '/#contact' },
 ];
