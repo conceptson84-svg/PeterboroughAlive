@@ -36,6 +36,15 @@ export const nextEvent = {
   note: 'Our most recent celebration was in 2025. There’s no event in 2026 — but we’ll be back. Save the date for Peterborough Alive 2027, our biggest night of gospel music yet.',
 };
 
+// Concert videos for the "Watch" section. `id` is the YouTube video id
+// (the part after watch?v= , youtu.be/ or /live/ ). Add more any time.
+export const watchVideos: { id: string; title: string }[] = [
+  { id: 'baiFaPApU_s', title: 'Peterborough Alive concert' },
+  { id: '8yXZArTQGxk', title: 'Peterborough Alive concert' },
+  { id: 'Ez2gnk6LkAE', title: 'Peterborough Alive concert' },
+  { id: 'A1CugwMvOdg', title: 'Peterborough Alive 2022 — virtual session' },
+];
+
 // Links used in navigation and the footer.
 export const nav = [
   { label: 'About', href: '/#about' },
