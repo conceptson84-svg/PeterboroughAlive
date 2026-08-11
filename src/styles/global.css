@@ -265,4 +265,9 @@ footer.pa-foot .tag{font-family:var(--serif); font-size:1.3rem; color:#fff; max-
 .year-row h3{margin:.3rem 0 .5rem}
 .year-row p{color:var(--muted); font-size:.95rem}
 .year-row .more{color:var(--gold); font-weight:650; font-size:.9rem; margin-top:.7rem; display:inline-block}
-@media (max-width:640px){ .year-row{grid-template-columns:1fr} .year-row .body{padding:0 1.4rem 1.4rem} }
+@media (max-width:640px){
+  .year-row{grid-template-columns:1fr; align-items:stretch}
+  .year-row .body{padding:0 1.4rem 1.4rem}
+  /* mobile: size the cover by aspect-ratio so it never overflows the text (iOS height:100% bug) */
+  .year-row .thumb,.year-row .thumb-video,.year-row .thumb-empty{height:auto; aspect-ratio:16/10}
+}
