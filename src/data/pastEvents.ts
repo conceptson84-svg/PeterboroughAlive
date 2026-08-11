@@ -12,6 +12,7 @@ const imgs2018 = load(import.meta.glob('../assets/photos/2018/*.jpg', { eager: t
 const imgs2022 = load(import.meta.glob('../assets/photos/2022/*.jpg', { eager: true, import: 'default' }));
 const imgs2023 = load(import.meta.glob('../assets/photos/2023/*.jpg', { eager: true, import: 'default' }));
 const imgs2025 = load(import.meta.glob('../assets/photos/2025/*.jpg', { eager: true, import: 'default' }));
+const imgs2019 = load(import.meta.glob('../assets/photos/2019/*.jpg', { eager: true, import: 'default' }));
 
 type Cap = { alt: string; caption?: string };
 
@@ -140,6 +141,37 @@ const caps2025: Cap[] = [
   { alt: 'Guests being welcomed in the foyer', caption: 'Everyone’s welcome' },
 ];
 
+const caps2019: Cap[] = [
+  { alt: 'The whole choir on stage with the audience watching', caption: 'The whole choir' },
+  { alt: 'The room gathered in worship', caption: 'A room in worship' },
+  { alt: 'The choir singing together', caption: 'Voices of the choir' },
+  { alt: 'A singer-guitarist performing with the band', caption: 'Guitar and voice' },
+  { alt: 'Singers on stage together', caption: 'On stage together' },
+  { alt: 'A trumpeter performing with the band', caption: 'The trumpet solo' },
+  { alt: 'The stage filling with singers and the audience beyond', caption: 'The stage fills up' },
+  { alt: 'A performer with the crowd on their feet', caption: 'On their feet' },
+  { alt: 'The ensemble performing in white', caption: 'The ensemble in white' },
+  { alt: 'A woman leading the song on stage', caption: 'Leading the song' },
+  { alt: 'The choir in full voice', caption: 'In full voice' },
+  { alt: 'Faith Child performing on the microphone', caption: 'Faith Child on the mic' },
+  { alt: 'The ensemble singing together', caption: 'Singing together' },
+  { alt: 'A performer engaging the crowd', caption: 'With the crowd' },
+  { alt: 'A singer and choir in call and response', caption: 'Call and response' },
+  { alt: 'A lead singer with the backing singers', caption: 'Lead and backing' },
+  { alt: 'Singers in white beneath the lyric screen', caption: 'Righteous and worthy' },
+  { alt: 'A vocalist lifted in praise with the band', caption: 'Lifted in praise' },
+  { alt: 'The choir singing on stage', caption: 'The choir sings' },
+  { alt: 'Singers standing hand in hand', caption: 'Hand in hand' },
+  { alt: 'The bass player and drums on stage', caption: 'The rhythm section' },
+  { alt: 'Singers performing on stage', caption: 'On stage' },
+  { alt: 'The full ensemble performing together', caption: 'The full ensemble' },
+  { alt: 'A singer-guitarist performing solo', caption: 'Just a voice and a guitar' },
+  { alt: 'A performer with the band behind', caption: 'With the band' },
+  { alt: 'Faith Child performing with energy', caption: 'Word and rhythm' },
+  { alt: 'A group together at the concert', caption: 'Together for the night' },
+  { alt: 'A vocalist performing centre stage', caption: 'Centre stage' },
+];
+
 const zip = (imgs: ImageMetadata[], caps: Cap[]) =>
   imgs.map((src, i) => ({ src, alt: caps[i]?.alt ?? '', caption: caps[i]?.caption }));
 
@@ -192,9 +224,9 @@ export const pastEvents: PastEvent[] = [
     year: 2019,
     title: 'Peterborough Alive 2019',
     blurb:
-      'Our second edition, at The Cresset — a wonderful night in God’s presence with Faith Child, Philippa Hanna, Pastor Nathaniel Bassey from Nigeria and the Peterborough Alive Mass Choir. Video highlights available.',
-    cover: null,
-    gallery: [],
+      'Our second edition, at The Cresset — a wonderful night in God’s presence with Faith Child, Philippa Hanna, Pastor Nathaniel Bassey from Nigeria and the Peterborough Alive Mass Choir.',
+    cover: imgs2019[0] ?? null,
+    gallery: zip(imgs2019, caps2019),
   },
   {
     year: 2018,
