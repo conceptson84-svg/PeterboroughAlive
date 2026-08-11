@@ -2,22 +2,22 @@
   --serif:"Hoefler Text","Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
   --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   /* light (default) — warm cream with a plum bias */
-  --bg:#F7F1EC; --bg-2:#EFE4DD; --surface:#FCF8F4;
-  --ink:#241019; --muted:#6E5563; --line:#E4D5CC;
-  --plum:#5B2247; --plum-deep:#2A0E24;
-  --gold:#B4770F; --gold-bright:#E4A32C; --flame:#DB6B29;
-  --on-gold:#2A0E24;
+  --bg:#F7F1EC; --bg-2:#EEE2DA; --surface:#FDF9F5;
+  --ink:#1C0713; --muted:#5E3B4C; --line:#E6D2C8;
+  --plum:#78164F; --plum-deep:#210619;
+  --gold:#A6640A; --gold-bright:#F6A81C; --flame:#E85A1B;
+  --on-gold:#210619;
   --hero-scrim:linear-gradient(180deg,rgba(28,8,22,.30) 0%,rgba(30,10,26,.55) 42%,rgba(24,7,20,.86) 100%);
   --shadow:0 18px 44px -22px rgba(42,14,36,.55);
   --maxw:1200px;
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --bg:#1B0917; --bg-2:#230F1F; --surface:#2A1124;
-    --ink:#F6EAF0; --muted:#C7A9B8; --line:#43223A;
-    --plum:#8A3D70; --plum-deep:#1A0715;
-    --gold:#E4A32C; --gold-bright:#F4C65B; --flame:#F0894A;
-    --on-gold:#241019;
+    --bg:#190614; --bg-2:#230D1E; --surface:#2C0F26;
+    --ink:#F8ECF2; --muted:#CFA6BA; --line:#4A2440;
+    --plum:#A8397C; --plum-deep:#150410;
+    --gold:#F0A81E; --gold-bright:#FBC63B; --flame:#FF7A38;
+    --on-gold:#210619;
     --shadow:0 18px 44px -20px rgba(0,0,0,.7);
   }
 }
@@ -30,11 +30,11 @@
   --shadow:0 18px 44px -20px rgba(0,0,0,.7);
 }
 :root[data-theme="light"]{
-  --bg:#F7F1EC; --bg-2:#EFE4DD; --surface:#FCF8F4;
-  --ink:#241019; --muted:#6E5563; --line:#E4D5CC;
-  --plum:#5B2247; --plum-deep:#2A0E24;
-  --gold:#B4770F; --gold-bright:#E4A32C; --flame:#DB6B29;
-  --on-gold:#2A0E24;
+  --bg:#F7F1EC; --bg-2:#EEE2DA; --surface:#FDF9F5;
+  --ink:#1C0713; --muted:#5E3B4C; --line:#E6D2C8;
+  --plum:#78164F; --plum-deep:#210619;
+  --gold:#A6640A; --gold-bright:#F6A81C; --flame:#E85A1B;
+  --on-gold:#210619;
   --shadow:0 18px 44px -22px rgba(42,14,36,.55);
 }
 
