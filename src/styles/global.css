@@ -192,7 +192,8 @@ footer.pa-foot{background:var(--plum-deep); color:rgba(255,255,255,.82)}
 footer.pa-foot .grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:2.4rem; padding-block:clamp(48px,7vw,80px)}
 footer.pa-foot img.logo{height:76px; width:auto; margin-bottom:1rem}
 footer.pa-foot h4{font-family:var(--sans); text-transform:uppercase; letter-spacing:.14em; font-size:.74rem; color:var(--gold-bright); margin:0 0 1rem}
-footer.pa-foot a{color:rgba(255,255,255,.82); text-decoration:none; display:block; padding:.28rem 0}
+footer.pa-foot a{color:rgba(255,255,255,.82); text-decoration:none; display:block; padding:.28rem 0; overflow-wrap:anywhere}
+footer.pa-foot .socials .soc{display:grid; padding:0}
 footer.pa-foot a:hover{color:#fff}
 footer.pa-foot .tag{font-family:var(--serif); font-size:1.3rem; color:#fff; max-width:24ch}
 .socials{display:flex; gap:.6rem; margin-top:.7rem}
@@ -200,6 +201,7 @@ footer.pa-foot .tag{font-family:var(--serif); font-size:1.3rem; color:#fff; max-
 .socials .soc:hover{color:var(--plum-deep); background:var(--gold-bright); border-color:var(--gold-bright); transform:translateY(-2px)}
 .socials .soc:focus-visible{outline:3px solid var(--gold-bright); outline-offset:2px}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.14); padding-block:1.3rem; display:flex; flex-wrap:wrap; gap:.6rem 1.4rem; align-items:center; font-size:.84rem; color:rgba(255,255,255,.6)}
+@media (max-width:760px){ footer.pa-foot .grid{grid-template-columns:1fr; gap:1.9rem} footer.pa-foot .tag{max-width:none} }
 
 /* generic page header (sub-pages) */
 .page-hero{background:var(--bg-2); border-bottom:1px solid var(--line)}
