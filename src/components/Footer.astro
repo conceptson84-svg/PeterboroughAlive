@@ -4,6 +4,16 @@ import logo from '../assets/logo.png';
 import { org, contact } from '../data/site';
 const year = new Date().getFullYear();
 const socials = Object.entries(contact.social).filter(([, v]) => v);
+
+const ICONS: Record<string, string> = {
+  instagram:
+    '<rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/>',
+  facebook:
+    '<path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.85.25-1.4 1.5-1.4h1.6V5.1C16.3 5.06 15.3 5 14.2 5c-2.3 0-3.8 1.4-3.8 3.9V11H8v3h2.4v7z" fill="currentColor"/>',
+  youtube:
+    '<path d="M22 12s0-3-.4-4.3a2.5 2.5 0 0 0-1.76-1.77C18.06 5.5 12 5.5 12 5.5s-6.06 0-7.84.43A2.5 2.5 0 0 0 2.4 7.7C2 9 2 12 2 12s0 3 .4 4.3a2.5 2.5 0 0 0 1.76 1.77C5.94 18.5 12 18.5 12 18.5s6.06 0 7.84-.43A2.5 2.5 0 0 0 21.6 16.3C22 15 22 12 22 12Zm-11.5 2.75v-5.5L15 12z" fill="currentColor"/>',
+};
+const label = (k: string) => k[0].toUpperCase() + k.slice(1);
 ---
 <footer class="pa-foot" id="contact">
   <div class="wrap">
@@ -23,10 +33,14 @@ const socials = Object.entries(contact.social).filter(([, v]) => v);
         <h4>Get in touch</h4>
         <a href={`mailto:${contact.email}`}>{contact.email}</a>
         <a href="#" set:html={contact.addressLines.join('<br>')}></a>
-        {socials.length > 0 ? (
-          socials.map(([k, v]) => <a href={v as string}>{k[0].toUpperCase() + k.slice(1)}</a>)
-        ) : (
-          <span style="color:rgba(255,255,255,.6)">Instagram · Facebook · YouTube</span>
+        {socials.length > 0 && (
+          <div class="socials">
+            {socials.map(([k, v]) => (
+              <a class="soc" href={v as string} target="_blank" rel="noopener noreferrer" aria-label={`${org.name} on ${label(k)}`}>
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" set:html={ICONS[k] ?? ''} />
+              </a>
+            ))}
+          </div>
         )}
       </div>
     </div>

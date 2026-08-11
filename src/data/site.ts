@@ -17,7 +17,7 @@ export const contact = {
   social: {
     instagram: 'https://www.instagram.com/peterboroughaliveconcert',
     facebook: 'https://www.facebook.com/peterborough.alive.3',
-    youtube: '',
+    youtube: 'https://www.youtube.com/@peterboroughalive8603',
   },
 };
 
