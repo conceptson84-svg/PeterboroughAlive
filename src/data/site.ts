@@ -5,7 +5,7 @@
 export const org = {
   name: 'Peterborough Alive',
   established: 2018,
-  tagline: 'Uniting community. Transforming lives.',
+  tagline: 'Uniting Communities, Transforming Lives',
   organiser: 'RCCG City of Grace Church, Peterborough',
   // Registered charity number — fill in for the footer / trust.
   charityNumber: '',
