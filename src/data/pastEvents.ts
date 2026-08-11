@@ -184,7 +184,7 @@ export const pastEvents: PastEvent[] = [
     year: 2021,
     title: 'Peterborough Alive 2021 — Spirit Break Out',
     blurb:
-      'Themed “Spirit Break Out.” After the pandemic paused 2020, Peterborough Alive returned with faith and hope renewed — a night of unity, togetherness and the love of God. Video highlights available.',
+      'Themed “Spirit Break Out.” With the pandemic still keeping us apart, Peterborough Alive came together online — a virtual celebration of unity, hope and the love of God. Watch it back below.',
     cover: null,
     gallery: [],
   },

@@ -42,7 +42,7 @@ export const watchVideos: { id: string; title: string }[] = [
   { id: 'baiFaPApU_s', title: 'Peterborough Alive concert' },
   { id: '8yXZArTQGxk', title: 'Peterborough Alive concert' },
   { id: 'Ez2gnk6LkAE', title: 'Peterborough Alive concert' },
-  { id: 'A1CugwMvOdg', title: 'Peterborough Alive 2022 — virtual session' },
+  { id: 'A1CugwMvOdg', title: 'Peterborough Alive 2021 — virtual session' },
 ];
 
 // Links used in navigation and the footer.
