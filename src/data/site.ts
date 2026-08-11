@@ -38,11 +38,11 @@ export const nextEvent = {
 
 // Concert videos for the "Watch" section. `id` is the YouTube video id
 // (the part after watch?v= , youtu.be/ or /live/ ). Add more any time.
-export const watchVideos: { id: string; title: string }[] = [
-  { id: 'baiFaPApU_s', title: 'Peterborough Alive concert' },
-  { id: '8yXZArTQGxk', title: 'Peterborough Alive concert' },
-  { id: 'Ez2gnk6LkAE', title: 'Peterborough Alive concert' },
-  { id: 'A1CugwMvOdg', title: 'Peterborough Alive 2021 — virtual session' },
+export const watchVideos: { id: string; title: string; year: number }[] = [
+  { id: 'baiFaPApU_s', title: 'Peterborough Alive 2025 — Halleluyah', year: 2025 },
+  { id: 'Ez2gnk6LkAE', title: 'Peterborough Alive 2023 — Kavod', year: 2023 },
+  { id: '8yXZArTQGxk', title: 'Peterborough Alive 2022', year: 2022 },
+  { id: 'A1CugwMvOdg', title: 'Peterborough Alive 2021 — Spirit Break Out (virtual)', year: 2021 },
 ];
 
 // Links used in navigation and the footer.

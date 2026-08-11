@@ -1,0 +1,32 @@
+---
+interface Props { id: string; title: string }
+const { id, title } = Astro.props;
+---
+<div class="vplayer" data-id={id}>
+  <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt={title} loading="lazy" width="480" height="360" />
+  <button class="vplay" type="button" aria-label={`Play: ${title}`}>
+    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+  </button>
+  <div class="vlbl">{title}</div>
+</div>
+
+<script>
+  // Wire every facade on the page once; load the YouTube iframe only on click.
+  document.querySelectorAll('.vplayer').forEach((el) => {
+    const p = el as HTMLElement;
+    if (p.dataset.wired) return;
+    p.dataset.wired = '1';
+    p.addEventListener('click', () => {
+      if (p.dataset.loaded) return;
+      const f = document.createElement('iframe');
+      f.className = 'vframe';
+      f.src = `https://www.youtube-nocookie.com/embed/${p.dataset.id}?autoplay=1&rel=0`;
+      f.title = 'YouTube video player';
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      f.allowFullscreen = true;
+      p.innerHTML = '';
+      p.appendChild(f);
+      p.dataset.loaded = '1';
+    });
+  });
+</script>

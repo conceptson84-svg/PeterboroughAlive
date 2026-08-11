@@ -4,14 +4,16 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Flame from '../../components/Flame.astro';
+import Video from '../../components/Video.astro';
 import { pastEvents } from '../../data/pastEvents';
+import { watchVideos } from '../../data/site';
 
 export function getStaticPaths() {
   return pastEvents.map((ev) => ({ params: { year: String(ev.year) }, props: { ev } }));
 }
 
 const { ev } = Astro.props;
-const others = pastEvents.filter((e) => e.year !== ev.year);
+const video = watchVideos.find((v) => v.year === ev.year);
 ---
 <Layout
   path={`/past-events/${ev.year}`}
@@ -36,7 +38,7 @@ const others = pastEvents.filter((e) => e.year !== ev.year);
 
   <section>
     <div class="wrap">
-      {ev.gallery.length > 0 ? (
+      {ev.gallery.length > 0 && (
         <div class="mosaic">
           {ev.gallery.map((photo, i) => (
             <figure class={`m${i % 6}`}>
@@ -45,10 +47,20 @@ const others = pastEvents.filter((e) => e.year !== ev.year);
             </figure>
           ))}
         </div>
-      ) : (
+      )}
+
+      {video && (
+        <div class="year-watch" style={ev.gallery.length > 0 ? 'margin-top:3.2rem' : ''}>
+          <span class="eyebrow"><Flame /> Watch it back</span>
+          <h2 style="margin:.6rem 0 1.3rem">The {ev.year} {ev.gallery.length > 0 ? 'concert' : 'session'} on film</h2>
+          <div class="year-video"><Video id={video.id} title={video.title} /></div>
+        </div>
+      )}
+
+      {ev.gallery.length === 0 && !video && (
         <div style="text-align:center; padding:3rem 1rem; color:var(--muted)">
-          <p style="font-family:var(--serif); font-size:1.4rem; color:var(--ink)">Relive {ev.year} on video.</p>
-          <p style="margin-top:.6rem">Watch it back in the <a href="/#watch" style="color:var(--gold); font-weight:600">Watch</a> section — and if you have photos from this event, we'd love to see them: <a href="/#contact" style="color:var(--gold); font-weight:600">get in touch</a>.</p>
+          <p style="font-family:var(--serif); font-size:1.4rem; color:var(--ink)">Photos from {ev.year} coming soon.</p>
+          <p style="margin-top:.6rem">If you have pictures from this event, we'd love to see them: <a href="/#contact" style="color:var(--gold); font-weight:600">get in touch</a>.</p>
         </div>
       )}
     </div>

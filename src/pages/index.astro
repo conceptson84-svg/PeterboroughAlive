@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Flame from '../components/Flame.astro';
+import Video from '../components/Video.astro';
 import { org, nextEvent, watchVideos } from '../data/site';
 import { artists, lineupConfirmed } from '../data/artists';
 import { partners } from '../data/partners';
@@ -145,15 +146,7 @@ const heroSlides = [heroImg, slide2, slide3, slide4];
         <p class="lede">Every year we stream and record the night, so the celebration reaches far beyond the room.</p>
       </div>
       <div class="watch-grid">
-        {watchVideos.map((v) => (
-          <div class="vplayer" data-id={v.id}>
-            <img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} loading="lazy" width="480" height="360" />
-            <button class="vplay" type="button" aria-label={`Play: ${v.title}`}>
-              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
-            </button>
-            <div class="vlbl">{v.title}</div>
-          </div>
-        ))}
+        {watchVideos.map((v) => <Video id={v.id} title={v.title} />)}
       </div>
       <p style="margin-top:1.4rem">
         <a class="btn btn-ghost" href="https://www.youtube.com/@peterboroughalive8603" target="_blank" rel="noopener noreferrer">▸ More on YouTube</a>
@@ -196,23 +189,6 @@ const heroSlides = [heroImg, slide2, slide3, slide4];
         slides[i].classList.add('is-active');
       }, 5000);
     })();
-  </script>
-
-  <script is:inline>
-    document.querySelectorAll('.vplayer').forEach(function (p) {
-      p.addEventListener('click', function () {
-        if (p.dataset.loaded) return;
-        var f = document.createElement('iframe');
-        f.className = 'vframe';
-        f.src = 'https://www.youtube-nocookie.com/embed/' + p.dataset.id + '?autoplay=1&rel=0';
-        f.title = 'YouTube video player';
-        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-        f.allowFullscreen = true;
-        p.innerHTML = '';
-        p.appendChild(f);
-        p.dataset.loaded = '1';
-      });
-    });
   </script>
 
   <Footer slot="footer" />
